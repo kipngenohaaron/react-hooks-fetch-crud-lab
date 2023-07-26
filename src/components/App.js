@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import AdminNavBar from "./AdminNavBar";
-import QuestionForm from "./QuestionForm";
 import QuestionList from "./QuestionList";
+import QuestionForm from "./QuestionForm";
 
 function App() {
   const [page, setPage] = useState("List");
 
+  const handleChangePage = (newPage) => {
+    setPage(newPage);
+  };
+
   return (
-    <main>
-      <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm /> : <QuestionList />}
-    </main>
+    <div>
+      <h1>Quiz App - Quizmasters View</h1>
+      <AdminNavBar onChangePage={handleChangePage} />
+      {page === "List" && <QuestionList />}
+      {page === "Form" && <QuestionForm />}
+    </div>
   );
 }
 
